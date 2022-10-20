@@ -18,6 +18,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.Gamepad.GamepadConstants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -31,6 +32,16 @@ import java.util.List;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+    //Deadens input
+    public double deaden(double input){
+        if(input < GamepadConstants.DEADZONE){
+            return 0;
+        }else{
+            return input;
+        }
+    }
+
   // The robot's subsystems
   private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem();
 
@@ -49,9 +60,9 @@ public class RobotContainer {
         new RunCommand(
             () ->
                 m_robotDrive.drive(
-                    ex3dPro.getX(),
-                    ex3dPro.getY(),
-                    ex3dPro.getZ(),
+                    deaden(ex3dPro.getX()),
+                    deaden(ex3dPro.getY()),
+                    deaden(ex3dPro.getZ()),
                     false),
             m_robotDrive));
   }
