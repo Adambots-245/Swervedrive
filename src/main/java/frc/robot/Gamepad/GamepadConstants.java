@@ -90,6 +90,21 @@ public class GamepadConstants {
 	 */
 	public static final int AXIS_RIGHT_Y = 5;
 
+	//Joystick Port Constants
+
+	public static final int STICK_BUTTON_TRIGGER = 1;
+	public static final int STICK_BUTTON_2 = 2;
+	public static final int STICK_BUTTON_3 = 3;
+	public static final int STICK_BUTTON_4 = 4;
+	public static final int STICK_BUTTON_5 = 5;
+	public static final int STICK_BUTTON_6 = 6;
+	public static final int STICK_BUTTON_7 = 7;
+	public static final int STICK_BUTTON_8 = 8;
+	public static final int STICK_BUTTON_9 = 9;
+	public static final int STICK_BUTTON_10 = 10;
+	public static final int STICK_BUTTON_11 = 11;
+	public static final int STICK_BUTTON_12 = 12;
+
 	// the ID/port for the whole DPad
 	// POV returns an angle in degrees 0-315 at 45 intervals
 	public static final int AXIS_DPAD_POV = 0;
