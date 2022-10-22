@@ -14,6 +14,7 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -23,7 +24,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.List;
 
 /*
@@ -45,11 +45,12 @@ public class RobotContainer {
 
 // SmartDashboard.putNumber("Throttle: ", ex3dPro.getThrottle());
 
+  Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
   // The robot's subsystems
-  private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem();
+  private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem(ex3dPro);
 
   // The driver's controller
-  Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,13 +62,18 @@ public class RobotContainer {
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
+            
             () ->
                 m_robotDrive.drive(
                     deaden(ex3dPro.getX()),
                     deaden(ex3dPro.getY()),
                     deaden(ex3dPro.getZ()),
                     false),
-            m_robotDrive));
+            m_robotDrive
+            
+            ));
+         //   SmartDashboard.putNumber("Left Drive Encoder", ex3dPro.getY());
+
   }
 
   /**

@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.sensors.Gyro;
 
 /**
@@ -18,5 +21,7 @@ public class RobotMap {
     
     public static final Gyro GyroSensor = Gyro.getInstance();
     public static final Accelerometer Accelerometer = new BuiltInAccelerometer();
+
+    public static final WPI_TalonFX FrontRightMotor = new WPI_TalonFX(2);
 
 }

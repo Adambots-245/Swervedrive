@@ -9,10 +9,13 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 // import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import frc.robot.Constants.DriveConstants;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -55,13 +58,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   // The gyro sensor
   private final Gyro m_gyro = RobotMap.GyroSensor;
+  private Joystick ex3dPro;
 
   // Odometry class for tracking robot pose
   SwerveDriveOdometry m_odometry =
       new SwerveDriveOdometry(DriveConstants.kDriveKinematics, m_gyro.getRotation2d());
 
-  /** Creates a new DriveSubsystem. */
-  public DrivetrainSubsystem() {}
+  public DrivetrainSubsystem(Joystick ex3dPro) {
+      this.ex3dPro = ex3dPro;
+  }
 
   @Override
   public void periodic() {
@@ -70,8 +75,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_gyro.getRotation2d(),
         m_frontLeft.getState(),
         m_frontRight.getState(),
-        m_rearLeft.getState(),
+        m_rearLeft.getState(),  
         m_rearRight.getState());
+
+     SmartDashboard.putNumber("getY", ex3dPro.getY());
+     SmartDashboard.putNumber("getX", ex3dPro.getX());
+     SmartDashboard.putNumber("getZ", ex3dPro.getZ());
+    //  SmartDashboard.putNumber("getTroddle", ex3dPro.getThrottle());
+    //  SmartDashboard.putNumber("getTwist", ex3dPro.getTwist());
+
+
+
   }
 
   /**

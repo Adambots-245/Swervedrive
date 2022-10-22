@@ -101,7 +101,8 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
      */
     @Override
     public double getAngle() {
-        return _navx.getAngle();
+        // return _navx.getAngle();
+        return 0d;
     }
 
     @Override
