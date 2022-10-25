@@ -38,6 +38,11 @@ public final class Constants {
         public static final int kRearLeftTurningMotorPort = 15;
         public static final int kFrontRightTurningMotorPort = 11;
         public static final int kRearRightTurningMotorPort = 13;
+
+        public static final int kRearLeftEncoderPort = 2;
+        public static final int kRearRightEncoderPort = 3;
+        public static final int kFrontRightEncoderPort = 5;
+        public static final int kFrontLeftEncoderPort = 4;
     
         public static final int[] kFrontLeftTurningEncoderPorts = new int[] {0, 1};
         public static final int[] kRearLeftTurningEncoderPorts = new int[] {2, 3};

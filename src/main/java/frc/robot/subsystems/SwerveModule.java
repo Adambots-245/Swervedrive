@@ -12,6 +12,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants.ModuleConstants;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import com.ctre.phoenix.sensors.WPI_CANCoder;
 
 public class SwerveModule {
   private final Spark m_driveMotor;
