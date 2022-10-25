@@ -29,15 +29,15 @@ public final class Constants {
     public static ShuffleboardTab debugTab;
 
     public static final class DriveConstants {
-        public static final int kFrontLeftDriveMotorPort = 0;
-        public static final int kRearLeftDriveMotorPort = 2;
-        public static final int kFrontRightDriveMotorPort = 4;
-        public static final int kRearRightDriveMotorPort = 6;
-    
-        public static final int kFrontLeftTurningMotorPort = 1;
-        public static final int kRearLeftTurningMotorPort = 3;
-        public static final int kFrontRightTurningMotorPort = 5;
-        public static final int kRearRightTurningMotorPort = 7;
+        public static final int kFrontLeftDriveMotorPort = 18;
+        public static final int kRearLeftDriveMotorPort = 16;
+        public static final int kFrontRightDriveMotorPort = 12;
+        public static final int kRearRightDriveMotorPort = 14;
+      
+        public static final int kFrontLeftTurningMotorPort = 17;
+        public static final int kRearLeftTurningMotorPort = 15;
+        public static final int kFrontRightTurningMotorPort = 11;
+        public static final int kRearRightTurningMotorPort = 13;
     
         public static final int[] kFrontLeftTurningEncoderPorts = new int[] {0, 1};
         public static final int[] kRearLeftTurningEncoderPorts = new int[] {2, 3};
@@ -59,15 +59,16 @@ public final class Constants {
         public static final boolean kFrontRightDriveEncoderReversed = false;
         public static final boolean kRearRightDriveEncoderReversed = true; 
     
-<<<<<<< HEAD
-        public static final double kTrackWidth = 24.276; //0.5
+
+        // public static final double kTrackWidth = 24.276; //0.5
         // Distance between centers of right and left wheels on robot
-        public static final double kWheelBase = 24.376 ;   //0.7
-=======
+        // public static final double kWheelBase = 24.376 ;   //0.7
+
+        // In Meters
         public static final double kTrackWidth = 0.61;  //0.5
         // Distance between centers of right and left wheels on robot
         public static final double kWheelBase = 0.61;  //0.7
->>>>>>> ea34de5809c74d75004e9d4ea035bb8e33eac37f
+
         // Distance between front and back wheels on robot
         public static final SwerveDriveKinematics kDriveKinematics =
             new SwerveDriveKinematics(
