@@ -13,13 +13,16 @@ import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
 import frc.robot.Constants.ModuleConstants;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.WPI_CANCoder;
 
 public class SwerveModule {
-  private final Spark m_driveMotor;
-  private final Spark m_turningMotor;
+  private final CANSparkMax m_driveMotor;
+  // private final Spark m_driveMotor;
+  // private final Spark m_turningMotor;
+  private final CANSparkMax m_turningMotor;
 
   // private final Encoder m_driveEncoder;
   // private final Encoder m_turningEncoder;
@@ -55,13 +58,15 @@ public class SwerveModule {
       int encoderChannel,
       boolean driveEncoderReversed,
       boolean turningEncoderReversed) {
-    m_driveMotor = new Spark(driveMotorChannel);
-    m_turningMotor = new Spark(turningMotorChannel);
+    // m_driveMotor = new Spark(driveMotorChannel);
+    m_driveMotor = new CANSparkMax(driveMotorChannel, MotorType.kBrushless);
+    m_turningMotor = new CANSparkMax(turningMotorChannel, MotorType.kBrushless);
 
     m_encoder = new WPI_CANCoder(encoderChannel);
     m_canCoderConfig.unitString = "rad";
     m_encoder.configAllSettings(m_canCoderConfig);
     m_encoder.clearStickyFaults();
+
     // m_driveEncoder = new Encoder(driveEncoderChannels[0], driveEncoderChannels[1]);
 
     // m_turningEncoder = new Encoder(turningEncoderChannels[0], turningEncoderChannels[1]);
@@ -94,7 +99,8 @@ public class SwerveModule {
    */
   public SwerveModuleState getState() {
     // return new SwerveModuleState(m_driveEncoder.getRate(), new Rotation2d(m_turningEncoder.get()));
-    double speedMetersPerSecond = ModuleConstants.kDriveEncoderDistancePerPulse * m_encoder.getVelocity();
+    // double speedMetersPerSecond = ModuleConstants.kDriveEncoderDistancePerPulse * m_encoder.getVelocity();
+    double speedMetersPerSecond = m_driveMotor.getEncoder().getVelocity() / 60.0;
     double turningRadians = m_encoder.getAbsolutePosition(); //assuming that setting the cancoder config to rad will return radians. if not, convert.
     return new SwerveModuleState(speedMetersPerSecond, new Rotation2d(turningRadians));
   }
