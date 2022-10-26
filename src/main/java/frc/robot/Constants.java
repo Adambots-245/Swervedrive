@@ -99,7 +99,7 @@ public final class Constants {
         public static final double kMaxModuleAngularSpeedRadiansPerSecond = 2 * Math.PI;
         public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 2 * Math.PI;
     
-        public static final int kEncoderCPR = 1024;
+        public static final int kEncoderCPR = 4096;
         public static final double kWheelDiameterMeters = 0.15;
         public static final double kDriveEncoderDistancePerPulse =
             // Assumes the encoders are directly mounted on the wheel shafts
