@@ -44,15 +44,15 @@ public final class Constants {
         public static final int kFrontRightEncoderPort = 5;
         public static final int kFrontLeftEncoderPort = 4;
     
-        public static final int[] kFrontLeftTurningEncoderPorts = new int[] {0, 1};
-        public static final int[] kRearLeftTurningEncoderPorts = new int[] {2, 3};
-        public static final int[] kFrontRightTurningEncoderPorts = new int[] {4, 5};
-        public static final int[] kRearRightTurningEncoderPorts = new int[] {6, 7};
+        // public static final int[] kFrontLeftTurningEncoderPorts = new int[] {0, 1};
+        // public static final int[] kRearLeftTurningEncoderPorts = new int[] {2, 3};
+        // public static final int[] kFrontRightTurningEncoderPorts = new int[] {4, 5};
+        // public static final int[] kRearRightTurningEncoderPorts = new int[] {6, 7};
     
-        public static final boolean kFrontLeftTurningEncoderReversed = false;
-        public static final boolean kRearLeftTurningEncoderReversed = true;
-        public static final boolean kFrontRightTurningEncoderReversed = false;
-        public static final boolean kRearRightTurningEncoderReversed = true;
+        public static final boolean kFrontLeftTurningEncoderReversed = true; //false
+        public static final boolean kRearLeftTurningEncoderReversed = false;
+        public static final boolean kFrontRightTurningEncoderReversed = true; //false
+        public static final boolean kRearRightTurningEncoderReversed = false;
     
         public static final int[] kFrontLeftDriveEncoderPorts = new int[] {8, 9};
         public static final int[] kRearLeftDriveEncoderPorts = new int[] {10, 11};
@@ -109,7 +109,7 @@ public final class Constants {
             // Assumes the encoders are on a 1:1 reduction with the module shaft.
             (2 * Math.PI) / (double) kEncoderCPR;
     
-        public static final double kPModuleTurningController = 1;
+        public static final double kPModuleTurningController = -0.1;
     
         public static final double kPModuleDriveController = 1;
       }

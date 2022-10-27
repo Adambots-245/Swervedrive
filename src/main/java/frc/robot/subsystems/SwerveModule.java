@@ -9,6 +9,7 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
 import frc.robot.Constants.ModuleConstants;
@@ -64,7 +65,7 @@ public class SwerveModule {
 
     m_encoder = new WPI_CANCoder(encoderChannel);
     m_canCoderConfig.unitString = "rad";
-    m_encoder.configAllSettings(m_canCoderConfig);
+    // m_encoder.configAllSettings(m_canCoderConfig);
     m_encoder.clearStickyFaults();
 
     // m_driveEncoder = new Encoder(driveEncoderChannels[0], driveEncoderChannels[1]);
@@ -89,6 +90,7 @@ public class SwerveModule {
 
     // Limit the PID Controller's input range between -pi and pi and set the input
     // to be continuous.
+    // m_encoder.
     m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
   }
 
@@ -101,7 +103,7 @@ public class SwerveModule {
     // return new SwerveModuleState(m_driveEncoder.getRate(), new Rotation2d(m_turningEncoder.get()));
     // double speedMetersPerSecond = ModuleConstants.kDriveEncoderDistancePerPulse * m_encoder.getVelocity();
     double speedMetersPerSecond = m_driveMotor.getEncoder().getVelocity() / 60.0;
-    double turningRadians = m_encoder.getAbsolutePosition(); //assuming that setting the cancoder config to rad will return radians. if not, convert.
+    double turningRadians = Units.degreesToRadians(m_encoder.getAbsolutePosition()); //assuming that setting the cancoder config to rad will return radians. if not, convert.
     return new SwerveModuleState(speedMetersPerSecond, new Rotation2d(turningRadians));
   }
 
@@ -113,8 +115,10 @@ public class SwerveModule {
   public void setDesiredState(SwerveModuleState desiredState) {
 
     double speedMetersPerSecond = ModuleConstants.kDriveEncoderDistancePerPulse * m_encoder.getVelocity();
-    double turningRadians = m_encoder.getAbsolutePosition(); //assuming that setting the cancoder config to rad will return radians. if not, convert.
+    double turningRadians = Units.degreesToRadians(m_encoder.getAbsolutePosition()); //assuming that setting the cancoder config to rad will return radians. if not, convert.
 
+    System.out.printf("Speed: %f, Turn: %f\n", speedMetersPerSecond, turningRadians);
+    
     // Optimize the reference state to avoid spinning further than 90 degrees
     SwerveModuleState state =
         SwerveModuleState.optimize(desiredState, new Rotation2d(turningRadians));
@@ -130,10 +134,13 @@ public class SwerveModule {
     // Calculate the turning motor output from the turning PID controller.
     m_driveMotor.set(driveOutput);
     m_turningMotor.set(turnOutput);
+    // System.out.printf("Drive Output: %f\n", driveOutput);
+    // System.out.printf("Turn Output: %f\n", turnOutput);
   }
 
   /** Zeroes all the SwerveModule encoders. */
   public void resetEncoders() {
+    m_driveMotor.getEncoder().setPosition(0);
     m_encoder.setPosition(0);
   }
 }
