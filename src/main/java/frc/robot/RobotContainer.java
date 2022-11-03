@@ -72,7 +72,6 @@ public class RobotContainer {
             m_robotDrive
             
             ));
-         //   SmartDashboard.putNumber("Left Drive Encoder", ex3dPro.getY());
 
   }
   private void configureButtonBindings() {}

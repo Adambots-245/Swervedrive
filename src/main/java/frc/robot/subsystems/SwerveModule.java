@@ -132,8 +132,10 @@ public class SwerveModule {
         m_turningPIDController.calculate(turningRadians, state.angle.getRadians());
 
     // Calculate the turning motor output from the turning PID controller.
+
     m_driveMotor.set(driveOutput);
     m_turningMotor.set(turnOutput);
+
     // System.out.printf("Drive Output: %f\n", driveOutput);
     // System.out.printf("Turn Output: %f\n", turnOutput);
   }

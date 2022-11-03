@@ -76,6 +76,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX()));
      SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY()));
      SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ()));
+   //  SmartDashboard.putNumber("speedmms",)
+
+     //     System.out.printf("Speed: %f, Turn: %f\n", speedMetersPerSecond, turningRadians);
+
     //  SmartDashboard.putNumber("getTroddle", ex3dPro.getThrottle());
     //  SmartDashboard.putNumber("getTwist", ex3dPro.getTwist());
 
@@ -125,7 +129,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_frontLeft.setDesiredState(swerveModuleStates[0]);
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
-    m_rearRight.setDesiredState(swerveModuleStates[3]);
+     m_rearRight.setDesiredState(swerveModuleStates[3]);
     
   }
 
