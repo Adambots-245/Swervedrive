@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 public class DrivetrainSubsystem extends SubsystemBase {
   // Robot swerve modules
   private final SwerveModule m_frontLeft =
@@ -81,6 +82,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("getY", ex3dPro.getY());
      SmartDashboard.putNumber("getX", ex3dPro.getX());
      SmartDashboard.putNumber("getZ", ex3dPro.getZ());
+     SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX()));
+     SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY()));
+     SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ()));
     //  SmartDashboard.putNumber("getTroddle", ex3dPro.getThrottle());
     //  SmartDashboard.putNumber("getTwist", ex3dPro.getTwist());
 
