@@ -75,13 +75,6 @@ public class RobotContainer {
          //   SmartDashboard.putNumber("Left Drive Encoder", ex3dPro.getY());
 
   }
-
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link edu.wpi.first.wpilibj.GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then calling passing it to a
-   * {@link JoystickButton}.
-   */
   private void configureButtonBindings() {}
 
   /**
