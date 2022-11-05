@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces.Gyro {
 
     private static Gyro _instance = null;
-    private static AHRS _navx = null;
+    public static AHRS _navx = null;
 
     private static class InstanceHolder {
         public static final Gyro instance = new Gyro();
@@ -101,8 +101,8 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
      */
     @Override
     public double getAngle() {
-        // return _navx.getAngle();
-        return 0d;
+         return -_navx.getAngle();
+       // return 0d;
     }
 
     @Override

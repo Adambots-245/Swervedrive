@@ -43,6 +43,14 @@ public class RobotContainer {
         }
     }
 
+    public static double theOneTrueDeaden(double input){
+        if(Math.abs(input) < 900000){
+            return 0;
+        }else{
+            return input;
+        }
+    }
+
 // SmartDashboard.putNumber("Throttle: ", ex3dPro.getThrottle());
 
   Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
@@ -65,10 +73,10 @@ public class RobotContainer {
             
             () ->
                 m_robotDrive.drive(
-                    deaden(ex3dPro.getX()),
                     deaden(ex3dPro.getY()),
+                    deaden(ex3dPro.getX()),
                     deaden(ex3dPro.getZ()),
-                    false),
+                    true),
             m_robotDrive
             
             ));

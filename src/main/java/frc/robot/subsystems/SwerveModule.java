@@ -37,8 +37,8 @@ public class SwerveModule {
   private final ProfiledPIDController m_turningPIDController =
       new ProfiledPIDController(
           ModuleConstants.kPModuleTurningController,
-          0,
-          0,
+          ModuleConstants.kIModuleTurningController,
+          ModuleConstants.kDModuleTurningController,
           new TrapezoidProfile.Constraints(
               ModuleConstants.kMaxModuleAngularSpeedRadiansPerSecond,
               ModuleConstants.kMaxModuleAngularAccelerationRadiansPerSecondSquared));
@@ -117,7 +117,7 @@ public class SwerveModule {
     double speedMetersPerSecond = ModuleConstants.kDriveEncoderDistancePerPulse * m_encoder.getVelocity();
     double turningRadians = Units.degreesToRadians(m_encoder.getAbsolutePosition()); //assuming that setting the cancoder config to rad will return radians. if not, convert.
 
-    System.out.printf("Speed: %f, Turn: %f\n", speedMetersPerSecond, turningRadians);
+    // System.out.printf("Speed: %f, Turn: %f\n", speedMetersPerSecond, turningRadians);
     
     // Optimize the reference state to avoid spinning further than 90 degrees
     SwerveModuleState state =
