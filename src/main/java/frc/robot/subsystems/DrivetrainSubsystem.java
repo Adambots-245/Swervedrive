@@ -76,7 +76,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX()));
      SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY()));
      SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ()));
-   //  SmartDashboard.putNumber("speedmms",)
+
+     SmartDashboard.putNumber("m_frontLeft", m_frontLeft.getState().angle.getDegrees());
+     SmartDashboard.putNumber("m_rearLeft", m_rearLeft.getState().angle.getDegrees());
+     SmartDashboard.putNumber("m_frontRight", m_frontRight.getState().angle.getDegrees());
+     SmartDashboard.putNumber("m_rearRight", m_rearRight.getState().angle.getDegrees());
+
+     SmartDashboard.putNumber("gyro", m_gyro.getAngle());
+     System.out.println(m_gyro.getRotation2d());
+     //  SmartDashboard.putNumber("speedmms",)
 
      //     System.out.printf("Speed: %f, Turn: %f\n", speedMetersPerSecond, turningRadians);
 
@@ -117,12 +125,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative
+            // ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
             ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+
             : new ChassisSpeeds(xSpeed, ySpeed, rot));
     SwerveDriveKinematics.desaturateWheelSpeeds(
         swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
     
-    //System.out.printf("XSpeed: %f, YSpeed: %f, Rot: %f\n", xSpeed, ySpeed, rot);
+    // System.out.printf("XSpeed: %f, YSpeed: %f, Rot: %f\n", xSpeed, ySpeed, rot);
     // System.out.printf("Left Speed: %f, Rot: %f\n", swerveModuleStates[0].speedMetersPerSecond, swerveModuleStates[0].angle.getDegrees());
     /**
      */
