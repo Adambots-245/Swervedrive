@@ -82,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("m_frontRight", m_frontRight.getState().angle.getDegrees());
      SmartDashboard.putNumber("m_rearRight", m_rearRight.getState().angle.getDegrees());
 
-     SmartDashboard.putNumber("gyro", m_gyro.getAngle());
+     SmartDashboard.putNumber("gyro", getHeading());
      System.out.println(m_gyro.getRotation2d());
      //  SmartDashboard.putNumber("speedmms",)
 

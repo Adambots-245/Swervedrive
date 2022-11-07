@@ -9,6 +9,7 @@ package frc.robot.sensors;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -23,10 +24,11 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
         public static final Gyro instance = new Gyro();
     }
 
-    private Gyro(){
+    private Gyro() {
         try {
-            if (_navx == null){
-                _navx = new AHRS(); // although this brings in depency, using setDevice this can be overwritten before calling getInstance
+            if (_navx == null) {
+                _navx = new AHRS(); // although this brings in depency, using setDevice this can be overwritten
+                                    // before calling getInstance
             }
 
             _navx.enableBoardlevelYawReset(true);
@@ -36,26 +38,26 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
         }
     }
 
-    public static void setDevice(AHRS navx){
-        
+    public static void setDevice(AHRS navx) {
+
         if (_navx == null)
             _navx = navx; // It should only be set once.
     }
 
-    public static Gyro getInstance(){
+    public static Gyro getInstance() {
         // if (_instance == null){
-        //     _instance = new Gyro();
+        // _instance = new Gyro();
         // }
         _instance = InstanceHolder.instance;
         return _instance;
     }
 
-    public void reset(){
+    public void reset() {
         _navx.reset();
         // _navx.enableBoardlevelYawReset(true);
     }
 
-    public void lowLevelReset(){
+    public void lowLevelReset() {
         _navx.enableBoardlevelYawReset(true);
         _navx.reset();
     }
@@ -66,7 +68,7 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
     public void calibrationCheck() {
 
         boolean isCalibrating = _navx.isCalibrating();
-        
+
         if (isCalibrating) {
             System.out.println("In Calibration Check - waiting 2 seconds to complete Gyro Calibration");
             Timer.delay(2); // wait 2 seconds to let it complete calibration
@@ -82,8 +84,9 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
     }
 
     /**
-     * Returns current Yaw value between a range of -180 to 180 degrees. 
+     * Returns current Yaw value between a range of -180 to 180 degrees.
      * Note that this Yaw value can accumulate errors over a period of time.
+     * 
      * @return
      */
     public float getYaw() {
@@ -97,12 +100,13 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
     }
 
     /**
-     * Returns accumulated Yaw angles and can be > than 360 degrees. This is in contrast to getYaw that returns -180 to 180 degree values.
+     * Returns accumulated Yaw angles and can be > than 360 degrees. This is in
+     * contrast to getYaw that returns -180 to 180 degree values.
      */
     @Override
     public double getAngle() {
-         return -_navx.getAngle();
-       // return 0d;
+        return -_navx.getAngle();
+        // return 0d;
     }
 
     @Override
@@ -113,6 +117,14 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
     @Override
     public void calibrate() {
         // do nothing - NavX automatically calibrates at startup
-        
+
     }
+
+    @Override
+    public Rotation2d getRotation2d() {
+
+        return Rotation2d.fromDegrees(-getAngle());
+
+    }
+
 }
