@@ -16,8 +16,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -47,6 +50,7 @@ public class RobotContainer {
 
   // The robot's subsystems
   private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem();
+  private final IntakeSubsystem intake = new IntakeSubsystem(IntakeConstants.intakeMotor);
 
   // The driver's controller
   Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
@@ -76,7 +80,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then calling passing it to a
    * {@link JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+        Buttons.secondaryRB.whileHeld(new intake.intake(100));
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
