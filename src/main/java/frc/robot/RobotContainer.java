@@ -36,7 +36,7 @@ public class RobotContainer {
 
     //Deadens input
     public double deaden(double input){
-        if(input < GamepadConstants.DEADZONE){
+        if(Math.abs(input) < GamepadConstants.DEADZONE){
             return 0;
         }else{
             return input;
