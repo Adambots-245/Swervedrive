@@ -43,6 +43,14 @@ public class RobotContainer {
         }
     }
 
+    public static double deadenOfGreaterPower(double input){
+        if(Math.abs(input) < GamepadConstants.DEADZONE + 0.15){
+            return 0;
+        }else{
+            return input;
+        }
+    }
+
     public static double theOneTrueDeaden(double input){
         if(Math.abs(input) < 900000){
             return 0;
@@ -75,7 +83,7 @@ public class RobotContainer {
                 m_robotDrive.drive(
                     deaden(ex3dPro.getY()),
                     deaden(ex3dPro.getX()),
-                    deaden(ex3dPro.getZ()),
+                    deadenOfGreaterPower(ex3dPro.getZ()),
                     true),
             m_robotDrive
             
