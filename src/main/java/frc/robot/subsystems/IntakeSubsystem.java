@@ -22,7 +22,7 @@ import frc.robot.RobotMap;
 import frc.robot.utils.Log;
 
 public class IntakeSubsystem extends SubsystemBase {
-  /**
+  /*
    * Creates a new Intake.
    */
 

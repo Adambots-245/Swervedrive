@@ -24,6 +24,7 @@ import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.IntakeCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -82,7 +83,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-        Buttons.secondaryRB.whileHeld(new intake.intake(100));
+        Buttons.primaryRB.whileHeld(new IntakeCommand(intake, 100));
+        Buttons.primaryLB.whileHeld(new IntakeCommand(intake, -100));
+        Buttons.primaryRB.whenReleased(new IntakeCommand(intake, 0));
+        Buttons.primaryLB.whenReleased(new IntakeCommand(intake, 0));
 
   }
 
