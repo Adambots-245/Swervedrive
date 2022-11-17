@@ -19,7 +19,12 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
+import frc.robot.commands.ExtendIntake;
+import frc.robot.commands.RunIntakeCommand;
+import frc.robot.commands.StopIntakeCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -43,27 +48,14 @@ public class RobotContainer {
         }
     }
 
-    public static double deadenOfGreaterPower(double input){
-        if(Math.abs(input) < GamepadConstants.DEADZONE + 0.15){
-            return 0;
-        }else{
-            return input;
-        }
-    }
-
-    public static double theOneTrueDeaden(double input){
-        if(Math.abs(input) < 900000){
-            return 0;
-        }else{
-            return input;
-        }
-    }
-
 // SmartDashboard.putNumber("Throttle: ", ex3dPro.getThrottle());
 
-  Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
-  // The robot's subsystems
+Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
+// The robot's subsystems
   private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem(ex3dPro);
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(
+      Constants.IntakeConstants.intakeMotor,
+      Constants.IntakeConstants.intakeSolenoid);
 
   // The driver's controller
 
@@ -83,14 +75,19 @@ public class RobotContainer {
                 m_robotDrive.drive(
                     deaden(ex3dPro.getY()),
                     deaden(ex3dPro.getX()),
-                    deadenOfGreaterPower(ex3dPro.getZ()),
+                    deaden(ex3dPro.getZ()),
                     true),
             m_robotDrive
             
             ));
 
   }
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    Buttons.primaryAButton.whenPressed(new RunIntakeCommand(intakeSubsystem));
+    Buttons.primaryYButton.whenPressed(new StopIntakeCommand(intakeSubsystem));
+
+    Buttons.primaryBButton.whenPressed(new ExtendIntake(intakeSubsystem));
+}
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
