@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -144,7 +146,8 @@ public final class Constants {
         public static final int intakePort = 6;
         public static final VictorSPX intakeMotor = new VictorSPX(intakePort);
 
-        public static final int pcmPort = 1;
-        public static final Solenoid intakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, pcmPort);
+        public static final int INTAKE_SOL_OUT_PORT = 1;
+        public static final int INTAKE_SOL_IN_PORT = 0;
+        public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, INTAKE_SOL_IN_PORT, INTAKE_SOL_OUT_PORT);
       }
 }

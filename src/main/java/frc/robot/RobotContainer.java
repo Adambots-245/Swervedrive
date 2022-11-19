@@ -22,7 +22,8 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
-import frc.robot.commands.ExtendIntake;
+import frc.robot.commands.ExtendIntakeCommand;
+import frc.robot.commands.RetractIntakeCommand;
 import frc.robot.commands.RunIntakeCommand;
 import frc.robot.commands.StopIntakeCommand;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -86,7 +87,8 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
     Buttons.primaryAButton.whenPressed(new RunIntakeCommand(intakeSubsystem));
     Buttons.primaryYButton.whenPressed(new StopIntakeCommand(intakeSubsystem));
 
-    Buttons.primaryBButton.whenPressed(new ExtendIntake(intakeSubsystem));
+    Buttons.primaryBButton.whenPressed(new ExtendIntakeCommand(intakeSubsystem));
+    Buttons.primaryXButton.whenPressed(new RetractIntakeCommand(intakeSubsystem));
 }
 
   /**

@@ -28,10 +28,10 @@ public class IntakeSubsystem extends SubsystemBase {
    */
 
   private BaseMotorController intakeMotor;
-  private Solenoid intakeSolenoid;
+  private DoubleSolenoid intakeSolenoid;
   private double motorSpeed = 0.0;
 
-  public IntakeSubsystem(BaseMotorController intakeMotor, Solenoid intakeSolenoid) {
+  public IntakeSubsystem(BaseMotorController intakeMotor, DoubleSolenoid intakeSolenoid) {
     super();
     
     this.intakeMotor = intakeMotor; 
@@ -53,11 +53,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void extendSolenoid () {
-    intakeSolenoid.set(true);
+    intakeSolenoid.set(Value.kForward);
   }
 
   public void retractSolenoid () {
-    intakeSolenoid.set(false);
+    intakeSolenoid.set(Value.kReverse);
   }
 
   @Override
