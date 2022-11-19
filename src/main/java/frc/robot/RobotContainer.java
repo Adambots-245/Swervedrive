@@ -84,8 +84,9 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
 
   }
   private void configureButtonBindings() {
-    Buttons.primaryAButton.whenPressed(new RunIntakeCommand(intakeSubsystem));
-    Buttons.primaryYButton.whenPressed(new StopIntakeCommand(intakeSubsystem));
+    Buttons.primaryRB.whileHeld(new RunIntakeCommand(intakeSubsystem, 0.5));
+    Buttons.primaryLB.whileHeld(new RunIntakeCommand(intakeSubsystem, -0.5));
+    //Buttons.primaryYButton.whenPressed(new StopIntakeCommand(intakeSubsystem));
 
     Buttons.primaryBButton.whenPressed(new ExtendIntakeCommand(intakeSubsystem));
     Buttons.primaryXButton.whenPressed(new RetractIntakeCommand(intakeSubsystem));

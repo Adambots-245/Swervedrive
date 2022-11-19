@@ -30,6 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private BaseMotorController intakeMotor;
   private DoubleSolenoid intakeSolenoid;
   private double motorSpeed = 0.0;
+  private boolean intakeIsOut = false;
 
   public IntakeSubsystem(BaseMotorController intakeMotor, DoubleSolenoid intakeSolenoid) {
     super();
@@ -43,8 +44,10 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intake(double speed) {
-    Log.infoF("Intake - Speed: %f", speed);
-    motorSpeed = speed;
+    if(intakeIsOut){
+      Log.infoF("Intake - Speed: %f", speed);
+      motorSpeed = speed;
+    }
   }
 
   public void stop(){
@@ -54,10 +57,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void extendSolenoid () {
     intakeSolenoid.set(Value.kForward);
+    intakeIsOut = true;
   }
 
   public void retractSolenoid () {
     intakeSolenoid.set(Value.kReverse);
+    intakeIsOut = false;
   }
 
   @Override
