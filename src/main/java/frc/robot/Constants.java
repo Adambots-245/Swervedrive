@@ -8,6 +8,10 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorSensorV3;
+
+import org.opencv.core.Scalar;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -16,6 +20,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 
@@ -149,5 +154,32 @@ public final class Constants {
         public static final int INTAKE_SOL_OUT_PORT = 1;
         public static final int INTAKE_SOL_IN_PORT = 0;
         public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, INTAKE_SOL_IN_PORT, INTAKE_SOL_OUT_PORT);
+      }
+
+      public static final class ColorSensingConstants{
+        public final static I2C.Port I2C_PORT = I2C.Port.kOnboard;
+
+        public final static ColorSensorV3 M_COLOR_SENSOR = new ColorSensorV3(I2C_PORT);
+
+        public final static ColorMatch M_COLOR_MATCHER = new ColorMatch();
+
+        public final static Color BLUE_TARGET = new Color(0.125, 0.424, 0.450);
+        public final static Color RED_TARGET = new Color(0.518, 0.347, 0.134);
+      }
+
+      public static final class VisionConstants{
+        public static final int CAM_NUMBER = 0;
+        public static final int CAM_EXPOSURE = 5;
+        public static final int IMG_WIDTH = 320;
+        public static final int IMG_HEIGHT = 240;
+        public static final int HOR_FOV_DEGREES = 60;
+        public static final double HOR_DEGREES_PER_PIXEL = (double) HOR_FOV_DEGREES / IMG_WIDTH;
+        public static final int IMG_HOR_MID = IMG_WIDTH / 2;
+        public static final int DRIVER_STATION_FPS = 6;
+        public static final int PROCESSING_FPS = 30;
+        public static final Scalar RED = new Scalar(0, 0, 255);
+        public static final Scalar GREEN = new Scalar(0, 255, 0);
+        public static final Scalar BLUE = new Scalar(255, 0, 0);
+        public static final int RING_LIGHT_PORT = 5;
       }
 }
