@@ -41,8 +41,8 @@ import java.util.List;
 public class RobotContainer {
 
     //Deadens input
-    public static double deaden(double input){
-        if(Math.abs(input) < GamepadConstants.DEADZONE){
+    public static double deaden(double input, double sadDeadenVariable){
+        if(Math.abs(input) < sadDeadenVariable){
             return 0;
         }else{
             return input;
@@ -67,20 +67,37 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
     configureButtonBindings();
 
     // Configure default commands
-    m_robotDrive.setDefaultCommand(
-        // The left stick controls translation of the robot.
-        // Turning is controlled by the X axis of the right stick.
-        new RunCommand(
+    if(false){
+      m_robotDrive.setDefaultCommand(
+            // The left stick controls translation of the robot.
+            // Turning is controlled by the X axis of the right stick.
+            new RunCommand(
             
-            () ->
-                m_robotDrive.drive(
-                    deaden(ex3dPro.getY()),
-                    deaden(ex3dPro.getX()),
-                    deaden(ex3dPro.getZ()),
+              () ->
+                    m_robotDrive.drive(
+                    deaden(ex3dPro.getY(), 0.15),
+                    deaden(ex3dPro.getX(), 0.15),
+                    deaden(ex3dPro.getZ(), 0.3141592653589793238462643383279502884197169399),
                     true),
             m_robotDrive
             
             ));
+    }else{
+        m_robotDrive.setDefaultCommand(
+            // The left stick controls translation of the robot.
+            // Turning is controlled by the X axis of the right stick.
+            new RunCommand(
+            
+              () ->
+                    m_robotDrive.drive(
+                    deaden(Buttons.primaryJoystick.getLeftY(), 0.15),
+                    deaden(Buttons.primaryJoystick.getLeftX(), 0.15),
+                    deaden(Buttons.primaryJoystick.getRightX(), 0.15),
+                    false),
+            m_robotDrive
+            
+            ));
+    }
 
   }
   private void configureButtonBindings() {

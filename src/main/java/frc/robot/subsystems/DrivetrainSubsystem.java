@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 // import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -73,9 +74,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("getY", ex3dPro.getY());
      SmartDashboard.putNumber("getX", ex3dPro.getX());
      SmartDashboard.putNumber("getZ", ex3dPro.getZ());
-     SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX()));
-     SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY()));
-     SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ()));
+     SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX(), 0.15));
+     SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY(), 0.15));
+     SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ(), 0.3141592653589793238462643383279502884197169399));
 
      SmartDashboard.putNumber("m_frontLeft", m_frontLeft.getState().angle.getDegrees());
      SmartDashboard.putNumber("m_rearLeft", m_rearLeft.getState().angle.getDegrees());
@@ -83,6 +84,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("m_rearRight", m_rearRight.getState().angle.getDegrees());
 
      SmartDashboard.putNumber("gyro", getHeading());
+     
+     SmartDashboard.putNumber("m_frontLeft speeed", m_frontLeft.getState().speedMetersPerSecond);
+     SmartDashboard.putNumber("m_rearLeft speeed", m_rearLeft.getState().speedMetersPerSecond);
+     SmartDashboard.putNumber("m_frontRight speeed", m_frontRight.getState().speedMetersPerSecond);
+     SmartDashboard.putNumber("m_rearRight speeed", m_rearRight.getState().speedMetersPerSecond);
+
     //  System.out.println(m_gyro.getRotation2d());
      //  SmartDashboard.putNumber("speedmms",)
 

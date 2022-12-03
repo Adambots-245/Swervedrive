@@ -123,7 +123,7 @@ public class Gyro extends BaseSensor implements edu.wpi.first.wpilibj.interfaces
     @Override
     public Rotation2d getRotation2d() {
 
-        return Rotation2d.fromDegrees(-getAngle());
+        return Rotation2d.fromDegrees(getAngle());
 
     }
 
