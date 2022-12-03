@@ -55,8 +55,7 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
 // The robot's subsystems
   private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem(ex3dPro);
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(
-      Constants.IntakeConstants.intakeMotor,
-      Constants.IntakeConstants.intakeSolenoid);
+      Constants.IntakeConstants.intakeMotor);
 
   // The driver's controller
 
@@ -67,7 +66,7 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
     configureButtonBindings();
 
     // Configure default commands
-    if(false){
+    if(true){
       m_robotDrive.setDefaultCommand(
             // The left stick controls translation of the robot.
             // Turning is controlled by the X axis of the right stick.
@@ -78,7 +77,7 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
                     deaden(ex3dPro.getY(), 0.15),
                     deaden(ex3dPro.getX(), 0.15),
                     deaden(ex3dPro.getZ(), 0.3141592653589793238462643383279502884197169399),
-                    true),
+                    false),
             m_robotDrive
             
             ));
@@ -91,8 +90,8 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
               () ->
                     m_robotDrive.drive(
                     deaden(Buttons.primaryJoystick.getLeftY(), 0.15),
-                    deaden(Buttons.primaryJoystick.getLeftX(), 0.15),
-                    deaden(Buttons.primaryJoystick.getRightX(), 0.15),
+                    deaden(Buttons.primaryJoystick.getLeftX(), 0.3/*Math.PI*/),
+                    deaden(Buttons.primaryJoystick.getRightX(), 0.15/*Math.PI*/),
                     false),
             m_robotDrive
             
@@ -103,8 +102,8 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
   private void configureButtonBindings() {
     Buttons.primaryRB.whileHeld(new RunIntakeCommand(intakeSubsystem, 0.5));
     Buttons.primaryLB.whileHeld(new RunIntakeCommand(intakeSubsystem, -0.5));
-    //Buttons.primaryYButton.whenPressed(new StopIntakeCommand(intakeSubsystem));
-
+    // Buttons.secondaryRB.whileHeld(new RunIntakeCommand(intakeSubsystem, 0.5));
+    // Buttons.secondaryLB.whileHeld(new RunIntakeCommand(intakeSubsystem, -0.5));
     Buttons.primaryBButton.whenPressed(new ExtendIntakeCommand(intakeSubsystem));
     Buttons.primaryXButton.whenPressed(new RetractIntakeCommand(intakeSubsystem));
 }

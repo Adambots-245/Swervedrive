@@ -21,7 +21,6 @@ public class RobotMap {
     
     public static final Gyro GyroSensor = Gyro.getInstance();
     public static final Accelerometer Accelerometer = new BuiltInAccelerometer();
-
     // public static final WPI_TalonFX FrontRightMotor = new WPI_TalonFX(2);
 
 }

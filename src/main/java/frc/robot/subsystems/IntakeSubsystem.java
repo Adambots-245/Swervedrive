@@ -32,22 +32,22 @@ public class IntakeSubsystem extends SubsystemBase {
   private double motorSpeed = 0.0;
   private boolean intakeIsOut = false;
 
-  public IntakeSubsystem(BaseMotorController intakeMotor, DoubleSolenoid intakeSolenoid) {
+  public IntakeSubsystem(BaseMotorController intakeMotor) {
     super();
     
     this.intakeMotor = intakeMotor; 
-    this.intakeMotor.setInverted(false);
-    this.intakeSolenoid = intakeSolenoid;
+    this.intakeMotor.setInverted(true);
+    //this.intakeSolenoid = intakeSolenoid;
     Log.info("Initializing Intake Subsystem");
 
     intakeMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void intake(double speed) {
-    if(intakeIsOut){
+    // if(intakeIsOut){
       Log.infoF("Intake - Speed: %f", speed);
       motorSpeed = speed;
-    }
+    // }
   }
 
   public void stop(){

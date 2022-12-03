@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -69,11 +70,6 @@ public final class Constants {
         public static final boolean kRearLeftDriveEncoderReversed = true;
         public static final boolean kFrontRightDriveEncoderReversed = false;
         public static final boolean kRearRightDriveEncoderReversed = true; 
-    
-
-        // public static final double kTrackWidth = 24.276; //0.5
-        // Distance between centers of right and left wheels on robot
-        // public static final double kWheelBase = 24.376 ;   //0.7
 
         // In Meters
         public static final double kTrackWidth = 0.61;  //0.5
@@ -144,8 +140,8 @@ public final class Constants {
 
       public static final class IntakeConstants{
         public static final int intakePort = 6;
-        public static final VictorSPX intakeMotor = new VictorSPX(intakePort);
-
+        public static final BaseMotorController intakeMotor = new VictorSPX(intakePort);
+      
         public static final int INTAKE_SOL_OUT_PORT = 1;
         public static final int INTAKE_SOL_IN_PORT = 0;
         public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, INTAKE_SOL_IN_PORT, INTAKE_SOL_OUT_PORT);
