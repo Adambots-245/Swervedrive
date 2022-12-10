@@ -32,12 +32,12 @@ public class IntakeSubsystem extends SubsystemBase {
   private double motorSpeed = 0.0;
   private boolean intakeIsOut = false;
 
-  public IntakeSubsystem(BaseMotorController intakeMotor) {
+  public IntakeSubsystem(BaseMotorController intakeMotor, DoubleSolenoid intakeSolenoid) {
     super();
     
     this.intakeMotor = intakeMotor; 
     this.intakeMotor.setInverted(true);
-    //this.intakeSolenoid = intakeSolenoid;
+    this.intakeSolenoid = intakeSolenoid;
     Log.info("Initializing Intake Subsystem");
 
     intakeMotor.setNeutralMode(NeutralMode.Brake);
@@ -56,6 +56,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void extendSolenoid () {
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
+    System.out.println("THIS IS A CRY FOR HELP!");
     intakeSolenoid.set(Value.kForward);
     intakeIsOut = true;
   }

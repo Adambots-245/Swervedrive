@@ -143,7 +143,8 @@ public final class Constants {
         public static final BaseMotorController intakeMotor = new VictorSPX(intakePort);
       
         public static final int INTAKE_SOL_OUT_PORT = 1;
-        public static final int INTAKE_SOL_IN_PORT = 0;
+        public static final int INTAKE_SOL_IN_PORT = 2;
         public static final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, INTAKE_SOL_IN_PORT, INTAKE_SOL_OUT_PORT);
       }
 }
+ 

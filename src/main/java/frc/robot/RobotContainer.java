@@ -55,7 +55,8 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
 // The robot's subsystems
   private final DrivetrainSubsystem m_robotDrive = new DrivetrainSubsystem(ex3dPro);
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(
-      Constants.IntakeConstants.intakeMotor);
+      Constants.IntakeConstants.intakeMotor,
+      Constants.IntakeConstants.intakeSolenoid);
 
   // The driver's controller
 
@@ -66,7 +67,7 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
     configureButtonBindings();
 
     // Configure default commands
-    if(true){
+    if(false){
       m_robotDrive.setDefaultCommand(
             // The left stick controls translation of the robot.
             // Turning is controlled by the X axis of the right stick.
@@ -91,8 +92,8 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
                     m_robotDrive.drive(
                     deaden(Buttons.primaryJoystick.getLeftY(), 0.15),
                     deaden(Buttons.primaryJoystick.getLeftX(), 0.3/*Math.PI*/),
-                    deaden(Buttons.primaryJoystick.getRightX(), 0.15/*Math.PI*/),
-                    false),
+                    deaden(Buttons.primaryJoystick.getRightX(), 0.25/*Math.PI*/),
+                    true),
             m_robotDrive
             
             ));

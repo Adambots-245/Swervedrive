@@ -14,6 +14,7 @@ import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 // import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Gamepad.Buttons;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -76,7 +77,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("getZ", ex3dPro.getZ());
      SmartDashboard.putNumber("deadX", RobotContainer.deaden(ex3dPro.getX(), 0.15));
      SmartDashboard.putNumber("deadY", RobotContainer.deaden(ex3dPro.getY(), 0.15));
-     SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ(), 0.3141592653589793238462643383279502884197169399));
+     SmartDashboard.putNumber("deadZ", RobotContainer.deaden(ex3dPro.getZ(), 0.3));
+
+     SmartDashboard.putNumber("ControllergetY", Buttons.primaryJoystick.getLeftY());
+     SmartDashboard.putNumber("ControllergetX", Buttons.primaryJoystick.getLeftX());
+     SmartDashboard.putNumber("ControllergetZ", Buttons.primaryJoystick.getRightX());
+     SmartDashboard.putNumber("ControllerdeadY", RobotContainer.deaden(Buttons.primaryJoystick.getLeftY(), 0.15));
+     SmartDashboard.putNumber("ControllerdeadX", RobotContainer.deaden(Buttons.primaryJoystick.getLeftX(), 0.3));
+     SmartDashboard.putNumber("ControllerdeadZ", RobotContainer.deaden(Buttons.primaryJoystick.getRightX(), 0.25));
 
      SmartDashboard.putNumber("m_frontLeft", m_frontLeft.getState().angle.getDegrees());
      SmartDashboard.putNumber("m_rearLeft", m_rearLeft.getState().angle.getDegrees());
