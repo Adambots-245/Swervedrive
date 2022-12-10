@@ -11,12 +11,15 @@ import java.util.logging.Level;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.SwerveModule;
 import frc.robot.utils.Log;
 
 /**
@@ -43,6 +46,13 @@ public class Robot extends TimedRobot {
     RobotMap.GyroSensor.reset();
 
     if (Robot.isReal()) {
+    }
+
+    if (!Preferences.containsKey(Constants.ModuleConstants.kPTurningKey)) {
+      Preferences.setDouble(Constants.ModuleConstants.kPTurningKey, Constants.ModuleConstants.kPModuleTurningController);
+    }
+    if (!Preferences.containsKey(Constants.ModuleConstants.kDTurningKey)) {
+      Preferences.setDouble(Constants.ModuleConstants.kDTurningKey, Constants.ModuleConstants.kDModuleTurningController);
     }
 
     // Instantiate our RobotContainer. This will perform all our button bindings,

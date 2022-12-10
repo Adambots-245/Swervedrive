@@ -56,7 +56,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private Joystick ex3dPro;
 
   // Odometry class for tracking robot pose
-  SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(DriveConstants.kDriveKinematics, m_gyro.getRotation2d());
+  private SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(DriveConstants.kDriveKinematics, m_gyro.getRotation2d());
 
   public DrivetrainSubsystem(Joystick ex3dPro) {
       this.ex3dPro = ex3dPro;
@@ -97,6 +97,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
      SmartDashboard.putNumber("m_rearLeft speeed", m_rearLeft.getState().speedMetersPerSecond);
      SmartDashboard.putNumber("m_frontRight speeed", m_frontRight.getState().speedMetersPerSecond);
      SmartDashboard.putNumber("m_rearRight speeed", m_rearRight.getState().speedMetersPerSecond);
+
+
+     SmartDashboard.putNumber("Odom Rot", m_gyro.getRotation2d().getDegrees());
+     SmartDashboard.putNumber("Odom X", m_odometry.getPoseMeters().getX());
+     SmartDashboard.putNumber("Odom Y", m_odometry.getPoseMeters().getY());
 
     //  System.out.println(m_gyro.getRotation2d());
      //  SmartDashboard.putNumber("speedmms",)
@@ -201,5 +206,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
    */
   public double getTurnRate() {
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+  }
+
+  public void setPIDValues(double kP, double kI, double kD) {
+    m_frontLeft.setPIDValues(kP, kI, kD);
+    m_frontRight.setPIDValues(kP, kI, kD);
+    m_rearLeft.setPIDValues(kP, kI, kD);
+    m_rearRight.setPIDValues(kP, kI, kD);
   }
 }

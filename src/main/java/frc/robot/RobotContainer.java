@@ -23,9 +23,11 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
 import frc.robot.commands.ExtendIntakeCommand;
+import frc.robot.commands.ResetOdometryCommand;
 import frc.robot.commands.RetractIntakeCommand;
 import frc.robot.commands.RunIntakeCommand;
 import frc.robot.commands.StopIntakeCommand;
+import frc.robot.commands.UpdateSwervePIDCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -107,6 +109,10 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
     // Buttons.secondaryLB.whileHeld(new RunIntakeCommand(intakeSubsystem, -0.5));
     Buttons.primaryBButton.whenPressed(new ExtendIntakeCommand(intakeSubsystem));
     Buttons.primaryXButton.whenPressed(new RetractIntakeCommand(intakeSubsystem));
+
+    Buttons.primaryDPadNE.whenPressed(new ResetOdometryCommand(m_robotDrive));
+    Buttons.primaryAButton.whenPressed(new ResetOdometryCommand(m_robotDrive));
+    Buttons.primaryYButton.whenPressed(new UpdateSwervePIDCommand(m_robotDrive));
 }
 
   /**

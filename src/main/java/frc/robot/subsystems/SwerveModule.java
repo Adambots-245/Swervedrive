@@ -43,6 +43,12 @@ public class SwerveModule {
               ModuleConstants.kMaxModuleAngularSpeedRadiansPerSecond,
               ModuleConstants.kMaxModuleAngularAccelerationRadiansPerSecondSquared));
 
+  public void setPIDValues(double kP, double kI, double kD) {
+    m_turningPIDController.setP(kP);
+    m_turningPIDController.setI(kI);
+    m_turningPIDController.setD(kD);
+  }
+
   /**
    * Constructs a SwerveModule.
    *
