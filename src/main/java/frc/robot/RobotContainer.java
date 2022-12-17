@@ -22,6 +22,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Gamepad.Buttons;
 import frc.robot.Gamepad.GamepadConstants;
+import frc.robot.commands.CustomSwerveControllerCommand;
 import frc.robot.commands.ExtendIntakeCommand;
 import frc.robot.commands.ResetOdometryCommand;
 import frc.robot.commands.RetractIntakeCommand;
@@ -95,7 +96,7 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
                     deaden(Buttons.primaryJoystick.getLeftY(), 0.15),
                     deaden(Buttons.primaryJoystick.getLeftX(), 0.3/*Math.PI*/),
                     deaden(Buttons.primaryJoystick.getRightX(), 0.25/*Math.PI*/),
-                    true),
+                    false),
             m_robotDrive
             
             ));
@@ -135,19 +136,20 @@ Joystick ex3dPro = new Joystick(OIConstants.kDriverControllerPort);
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these two interior waypoints, making an 's' curve path
-            List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+            List.of(/*new Translation2d(1, 1), new Translation2d(2, -1)*/),
             // End 3 meters straight ahead of where we started, facing forward
-            new Pose2d(3, 0, new Rotation2d(0)),
+            new Pose2d(1, 0, new Rotation2d(3)),
             config);
-
+    // System.out.println("Total time: " + exampleTrajectory.getTotalTimeSeconds());
     var thetaController =
         new ProfiledPIDController(
             AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-    SwerveControllerCommand swerveControllerCommand =
-        new SwerveControllerCommand(
+    CustomSwerveControllerCommand swerveControllerCommand =
+        new CustomSwerveControllerCommand(
             exampleTrajectory,
+            new Pose2d(1, 0, new Rotation2d(3)),
             m_robotDrive::getPose, // Functional interface to feed supplier
             DriveConstants.kDriveKinematics,
 

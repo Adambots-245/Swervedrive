@@ -15,7 +15,9 @@ import frc.robot.Constants;
 import frc.robot.Constants.ModuleConstants;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.WPI_CANCoder;
 
@@ -68,6 +70,8 @@ public class SwerveModule {
     // m_driveMotor = new Spark(driveMotorChannel);
     m_driveMotor = new CANSparkMax(driveMotorChannel, MotorType.kBrushless);
     m_turningMotor = new CANSparkMax(turningMotorChannel, MotorType.kBrushless);
+    // m_driveMotor.setIdleMode(IdleMode.kBrake);
+    // m_turningMotor.setIdleMode(IdleMode.kBrake);
 
     m_encoder = new WPI_CANCoder(encoderChannel);
     m_canCoderConfig.unitString = "rad";
